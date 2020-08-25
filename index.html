@@ -1,48 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sketchbook</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <div class="wrapper">
-    <div class="sketch-menu">
-      <header class="heading">
-        <h1 class="heading__title">Sketchbook</h1>
-      </header>
-      <nav class="options">
-        <label class="options__pencil" for="pencil">Pencil color:</label>
-        <input class="options__input" type="color" name="pencil" id="pencil" />
 
-        <label class="options__background" for="background"
-          >Background color:</label
-        >
-        <input
-          class="options__input"
-          type="color"
-          name="background"
-          id="background"
-        />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sketchbook</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<div class="wrapper">
+  <div class="sketch-menu">
+    <header class="heading">
+      <h1 class="heading__title">Sketchbook</h1>
+    </header>
+    <div class="options">
+      <label class="options__pencil" for="pencil">Pencil color:</label>
+      <input class="options__input" type="color" name="pencil" id="pencil" />
 
-        <label class="options__size" for="size">Pencil size:</label>
-        <input class="options__input" type="number" name="size" id="size" />
-      </nav>
+      <label class="options__background" for="background">Background color:</label>
+      <input class="options__input" type="color" name="background" id="background" />
 
-      <div class="actions">
-        <button class="action__clear">Clear</button>
-        <button class="action__save">Save</button>
-      </div>
+      <label class="options__size" for="size">Pencil size:</label>
+      <input class="options__input" type="number" name="size" id="size" />
     </div>
-    <div class="sketch">Here we will be drawing</div>
-  </div>
 
-  <body>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"
-      integrity="sha512-WIklPM6qPCIp6d3fSSr90j+1unQHUOoWDS4sdTiR8gxUTnyZ8S2Mr8e10sKKJ/bhJgpAa/qG068RDkg6fIlNFA=="
-      crossorigin="anonymous"
-    ></script>
-    <script src="Sketch.js"></script>
-  </body>
+    <div class="actions">
+      <button data-clear class="action__clear">Clear</button>
+      <button data-save class="action__save">Save</button>
+    </div>
+  </div>
+  <canvas data-canvas class="sketch">Here we will be drawing</canvas>
+</div>
+
+
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+  <script src="Sketch.js"></script>
+</body>
+
 </html>
