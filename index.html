@@ -4,13 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sketch Site</title>
+    <title>Sketchbook</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<div class="wrapper">
+    <div class="sketch-menu">
+        <header class="heading">
+            <h1 class="heading__title">Sketchbook</h1>
+        </header>
+        <nav class="options">
+            <label class="options__pencil" for="pencil">Pencil color</label>
+            <input class="options__pencil-input" type="color" name="pencil" id="pencil">
+
+            <label class="options__background" for="background">Background color</label>
+            <input class="options__background-input" type="color" name="background" id="background">
+
+            <label class="options__size" for="size">Background color</label>
+            <input class="options__size-input" type="number" name="size" id="size">
+
+            <button class="options__clear">Clear</button>
+            <button class="options__save">Save</button>
+        </nav>
+    </div>
+    <div class="sketch"></div>
+</div>
 
 <body>
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"
+        integrity="sha512-WIklPM6qPCIp6d3fSSr90j+1unQHUOoWDS4sdTiR8gxUTnyZ8S2Mr8e10sKKJ/bhJgpAa/qG068RDkg6fIlNFA=="
+        crossorigin="anonymous"></script>
     <script src="Sketch.js"></script>
 </body>
 
