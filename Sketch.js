@@ -1,39 +1,63 @@
-class Sketch {
-
-    pencilColorInput = null;
-    backgroundColorInput = null;
-    pencilSizeInput = null;
-    clearBtn = null;
-    saveBtn = null;
-    canvas = null;
-    canvasSizesInfo = null;
-
-
-    DOMElements = {
-        pencilColorInput: 'pencil',
-        backgroundColorInput: 'background',
-        pencilSizeInput: 'size',
-        clearBtn: '[data-clear]',
-        saveBtn: '[data-save]',
-        canvas: '[data-canvas]',
-    }
-    initializeApp() {
-        this.getDOMElements();
-        this.getCanvasSizes();
-        console.log(this.canvasSizesInfo);
-    }
-    getDOMElements() {
-        this.pencilColorInput = document.getElementById(this.DOMElements.pencilColorInput);
-        this.backgroundColorInput = document.getElementById(this.DOMElements.backgroundColorInput);
-        this.pencilSizeInput = document.getElementById(this.DOMElements.pencilSizeInput);
-        this.clearBtn = document.querySelector(this.DOMElements.clearBtn);
-        this.saveBtn = document.querySelector(this.DOMElements.saveBtn);
-        this.canvas = document.querySelector(this.DOMElements.canvas);
-    }
-    getCanvasSizes() {
-        this.canvasSizesInfo = this.canvas.getBoundingClientRect()
-    }
+const DOMElementsGrabbers = {
+    pencilColorInput: 'pencil',
+    backgroundColorInput: 'colorBackground',
+    pencilSizeInput: 'size',
+    clearBtn: '[data-clear]',
+    saveBtn: '[data-save]',
+    sketchMenu: '[data-menu]',
 }
 
-const sketch = new Sketch()
-sketch.initializeApp()
+let pencilColorInput = null;
+let backgroundColorInput = null;
+let pencilSizeInput = null;
+let clearBtn = null;
+let saveBtn = null;
+let upperNav = null;
+let colorOfTheBackground = null;
+let pencilColor = null;
+let pencilSize = null;
+
+const getDOMElements = () => {
+    pencilColorInput = document.getElementById(DOMElementsGrabbers.pencilColorInput);
+    backgroundColorInput = document.getElementById(DOMElementsGrabbers.backgroundColorInput);
+    pencilSizeInput = document.getElementById(DOMElementsGrabbers.pencilSizeInput);
+    clearBtn = document.querySelector(DOMElementsGrabbers.clearBtn);
+    saveBtn = document.querySelector(DOMElementsGrabbers.saveBtn);
+    upperNav = document.querySelector(DOMElementsGrabbers.sketchMenu);
+}
+
+const initializeApp = () => {
+    getDOMElements();
+}
+
+
+
+document.addEventListener('DOMContentLoaded', initializeApp())
+
+pencilSizeInput.addEventListener('input', (e) => {
+    pencilSize = e.target.value
+})
+
+backgroundColorInput.addEventListener('input', (e) => {
+    colorOfTheBackground = e.target.value;
+    draw = () => {
+        background(colorOfTheBackground);
+    }
+})
+
+pencilColorInput.addEventListener('input', (e) => {
+    pencilColor = e.target.value;
+
+    draw = () => {
+        if (mouseIsPressed) {
+            fill(pencilColor);
+        }
+        ellipse(mouseX, mouseY, pencilSize, pencilSize);
+    }
+
+})
+
+function setup() {
+    const upperNavHeight = upperNav.getBoundingClientRect().height;
+    createCanvas(window.innerWidth, window.innerHeight - upperNavHeight);
+}
