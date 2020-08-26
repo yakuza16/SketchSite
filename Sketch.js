@@ -7,32 +7,26 @@ const DOMElementsGrabbers = {
     sketchMenu: '[data-menu]',
 }
 
-let pencilColorInput = null;
-let backgroundColorInput = null;
-let pencilSizeInput = null;
-let clearBtn = null;
-let saveBtn = null;
-let upperNav = null;
-
-const getDOMElements = () => {
-    pencilColorInput = document.getElementById(DOMElementsGrabbers.pencilColorInput);
-    backgroundColorInput = document.getElementById(DOMElementsGrabbers.backgroundColorInput);
-    pencilSizeInput = document.getElementById(DOMElementsGrabbers.pencilSizeInput);
-    clearBtn = document.querySelector(DOMElementsGrabbers.clearBtn);
-    saveBtn = document.querySelector(DOMElementsGrabbers.saveBtn);
-    upperNav = document.querySelector(DOMElementsGrabbers.sketchMenu);
-}
-
-document.addEventListener('DOMContentLoaded', getDOMElements())
-
-function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
-  }
-
+const pencilColorInput = document.getElementById(DOMElementsGrabbers.pencilColorInput);
+const backgroundColorInput = document.getElementById(DOMElementsGrabbers.backgroundColorInput);
+const pencilSizeInput = document.getElementById(DOMElementsGrabbers.pencilSizeInput);;
+const clearBtn = document.querySelector(DOMElementsGrabbers.clearBtn);
+const saveBtn = document.querySelector(DOMElementsGrabbers.saveBtn);
+const upperNav = document.querySelector(DOMElementsGrabbers.sketchMenu);
 
 let pencilSize = pencilSizeInput.value
 let pencilColor = pencilColorInput.value
 let colorOfTheBackground = backgroundColorInput.value;
+
+function setup() {
+    const upperNavHeight = upperNav.getBoundingClientRect().height;
+    createCanvas(window.innerWidth, window.innerHeight - upperNavHeight);
+    background(colorOfTheBackground);
+}
+
+pencilColorInput.addEventListener('input', (e) => {
+    pencilColor = e.target.value;
+})
 
 pencilSizeInput.addEventListener('input', (e) => {
     pencilSize = e.target.value
@@ -43,25 +37,23 @@ backgroundColorInput.addEventListener('input', (e) => {
     background(colorOfTheBackground);
 })
 
-pencilColorInput.addEventListener('input', (e) => {
-    pencilColor = e.target.value;
-})
-
-function setup() {
-    const upperNavHeight = upperNav.getBoundingClientRect().height;
-    createCanvas(window.innerWidth, window.innerHeight - upperNavHeight);
-    background(colorOfTheBackground);
-}
-
-const paint = ()=>{
+const paint = () => {
     draw = () => {
         if (mouseIsPressed) {
-            point(mouseX, mouseY); 
+            point(mouseX, mouseY);
             stroke(pencilColor)
             strokeWeight(pencilSize)
         }
-        
     }
 }
 
 document.addEventListener('mousemove', paint())
+
+clearBtn.addEventListener('click', () => background(colorOfTheBackground))
+
+saveBtn.addEventListener('click', () => saveCanvas('mySketch', 'jpg'))
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+    background(colorOfTheBackground);
+}
