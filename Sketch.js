@@ -13,9 +13,6 @@ let pencilSizeInput = null;
 let clearBtn = null;
 let saveBtn = null;
 let upperNav = null;
-let colorOfTheBackground = null;
-let pencilColor = null;
-let pencilSize = null;
 
 const getDOMElements = () => {
     pencilColorInput = document.getElementById(DOMElementsGrabbers.pencilColorInput);
@@ -26,13 +23,16 @@ const getDOMElements = () => {
     upperNav = document.querySelector(DOMElementsGrabbers.sketchMenu);
 }
 
-const initializeApp = () => {
-    getDOMElements();
-}
+document.addEventListener('DOMContentLoaded', getDOMElements())
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+  }
 
 
-
-document.addEventListener('DOMContentLoaded', initializeApp())
+let pencilSize = pencilSizeInput.value
+let pencilColor = pencilColorInput.value
+let colorOfTheBackground = backgroundColorInput.value;
 
 pencilSizeInput.addEventListener('input', (e) => {
     pencilSize = e.target.value
@@ -40,24 +40,28 @@ pencilSizeInput.addEventListener('input', (e) => {
 
 backgroundColorInput.addEventListener('input', (e) => {
     colorOfTheBackground = e.target.value;
-    draw = () => {
-        background(colorOfTheBackground);
-    }
+    background(colorOfTheBackground);
 })
 
 pencilColorInput.addEventListener('input', (e) => {
     pencilColor = e.target.value;
-
-    draw = () => {
-        if (mouseIsPressed) {
-            fill(pencilColor);
-        }
-        ellipse(mouseX, mouseY, pencilSize, pencilSize);
-    }
-
 })
 
 function setup() {
     const upperNavHeight = upperNav.getBoundingClientRect().height;
     createCanvas(window.innerWidth, window.innerHeight - upperNavHeight);
+    background(colorOfTheBackground);
 }
+
+const paint = ()=>{
+    draw = () => {
+        if (mouseIsPressed) {
+            point(mouseX, mouseY); 
+            stroke(pencilColor)
+            strokeWeight(pencilSize)
+        }
+        
+    }
+}
+
+document.addEventListener('mousemove', paint())
