@@ -1,8 +1,8 @@
 # SketchSite/SketchBook
 
-## Application made in:
-
 ![](https://cdn3.iconfinder.com/data/icons/education-209/64/paint-color-pallete-brush-academy-256.png)
+
+## Application made in:
 
 **HTML**
 ![](https://cdn4.iconfinder.com/data/icons/social-media-logos-6/512/96-html5-48.png)
