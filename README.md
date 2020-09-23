@@ -1,4 +1,4 @@
-# [SketchSite/SketchBook](http://https://yakuza16.github.io/SketchSite/ "SketchSite/SketchBook")
+# [SketchSite/SketchBook](https://yakuza16.github.io/SketchSite/ "SketchSite/SketchBook")
 
 ![](https://cdn3.iconfinder.com/data/icons/education-209/64/paint-color-pallete-brush-academy-256.png)
 
